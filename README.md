@@ -9,4 +9,8 @@ python3 & pyqt5</br>
 6.pip install pytz</br>
 7.pip install Pillow</br>
 </br>
+install mysql</br>
+create database evidence</br>
+create table get_web_data</br>
+</br>
 run
