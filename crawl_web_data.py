@@ -6,7 +6,10 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import *
-from PyQt5 import QtGui, QtWidgets
+
+#from PyQt5 import QtGui, QtWidgets
+from PyQt5 import *
+
 
 
 
@@ -56,11 +59,11 @@ class MainWindow(QMainWindow):
 		self.le_urlbar.setCursorPosition(0)
 
 	def capture_screen_on(self):
-		#opt = 0
+		opt = 0
 		self.get_web_data(opt)
 
 	def capture_all_screen_on(self):
-		#opt = 1
+		opt = 1
 		self.get_web_data(opt)
 
 	#crawling web data
@@ -79,7 +82,7 @@ class MainWindow(QMainWindow):
 		response = requests.get(curURL)
 		if response.status_code == 200:
 			html = response.text
-		f = open("./html_source.txt", "w")
+		f = open("./html_source.txt", "w", encoding='utf8')
 		data = str(html).replace(">",">\n")
 		f.write(data)
 		f.close()
@@ -91,6 +94,18 @@ class MainWindow(QMainWindow):
 			size = self.browser.size()
 		else:
 			print("give me size")
+			#size = self.browser.frameGeometry()
+			#bsize = self.browser.size()
+			#fsize = self.browser.frameSize()
+			#msize = self.frameSize()
+			#size = self.frameSize()
+			#print(size)
+			#print(bsize)
+			#print(fsize)
+			#print(msize)
+			#command = "document.body.scrollHeight"
+			#print(self.browser.page().runJavaScript("document.body.scrollHeight"))
+			#height = self.browser.page().runJavaScript("height = document.body.scrollHeight; alert(height);")
 		image = QtGui.QImage(size.width(), size.height(), QtGui.QImage.Format_ARGB32)
 		painter = QPainter()
 		painter.begin(image)
@@ -146,5 +161,3 @@ if __name__ == "__main__":
 	window = MainWindow()
 	window.show()
 	app.exec_()
-
-
